@@ -3,7 +3,8 @@ const mongoAtlasDB = require('./mongoAtlasDB');
 const walletModel = require('./mongoModels/wallet');
 const signUp = require('./Authentication/signUp');
 const login = require('./Authentication/login');
-const postBestTime = require('./utilities')
+const postBestTime = require('./utilities');
+const path = require('path');
 
 const PORT = process.env.PORT || 3001;
 
