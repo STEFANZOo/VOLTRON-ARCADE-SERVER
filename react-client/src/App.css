@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.Profile-header {
+  background-color: black;
+  color: chartreuse;
+  display: flex;
+  font-size: 20px;  
+}
