@@ -15,7 +15,7 @@ import axios from "axios";
 function MineSweeperGameBoard({minesweeper , player}) {
     const [rows, setRows] = useState(10);
     const [cols, setCols] = useState(10);
-    const [mines, setMines] = useState(2);
+    const [mines, setMines] = useState(20);
     const [flags, setFlags] = useState(0);
     const [grid, setGrid] = useState([]);
     const [seconds , setSeconds] = useState(0);
