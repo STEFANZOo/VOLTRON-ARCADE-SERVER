@@ -126,7 +126,7 @@ function MineSweeperGameBoard({minesweeper , player}) {
     function intermediateLevel(){
         setRows(16);
         setCols(16);
-        setMines(2);
+        setMines(40);
         setFlags(0);
         const inter = FillBoard(rows, cols, mines)
         setGrid(inter);
