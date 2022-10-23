@@ -113,14 +113,24 @@ function MineSweeperGameBoard({minesweeper , player}) {
     };
 
     function beginnerLevel(){
-        setRows(10);
-        setCols(10);
-        setMines(20);
+        setRows(9);
+        setCols(9);
+        setMines(10);
         setFlags(0);
         const beg = FillBoard(rows, cols, mines);
         setGrid(beg);
         clearTimer();
         
+    }
+
+    function noviceLevel(){
+        setRows(12);
+        setCols(12);
+        setMines(20);
+        setFlags(0);
+        const novice = FillBoard(rows, cols, mines);
+        setGrid(novice);
+        clearTimer();
     }
 
     function intermediateLevel(){
@@ -134,12 +144,22 @@ function MineSweeperGameBoard({minesweeper , player}) {
     }
 
     function expertBoard(){
-        setRows(30);
-        setCols(16);
+        setRows(16);
+        setCols(30);
         setMines(99);
         setFlags(0);
         const exp = FillBoard(rows, cols, mines)
         setGrid(exp);
+        clearTimer();
+    }
+
+    function masterLevel(){
+        setRows(24);
+        setCols(30);
+        setMines(150);
+        setFlags(0);
+        const master = FillBoard(rows, cols, mines);
+        setGrid(master);
         clearTimer();
     }
 
@@ -168,7 +188,7 @@ function MineSweeperGameBoard({minesweeper , player}) {
         if(Iwin === 0 && grid.length && !losing && flags === mines){
             toggle();
             setShowWin(true)
-            let record = checkForBestTime(rows, seconds , minesweeper);
+            let record = checkForBestTime(rows, cols, seconds , minesweeper);
 
             if(record > 0){
                let response =  axios.post('/bestTime' , {record: record, player: player ,seconds: seconds});
@@ -179,10 +199,17 @@ function MineSweeperGameBoard({minesweeper , player}) {
                         minesweeper.beginnerBestTime = seconds;
                         break;
                     case 2:
+                        minesweeper.noviceBestTime = seconds;
+                        break;
+
+                    case 3:
                         minesweeper.intermediateBestTime = seconds;
                         break;
-                    case 3:
+                    case 4:
                         minesweeper.expertBestTime = seconds;
+                        break;
+                    case 5:
+                        minesweeper.masterBesttime = seconds;
                         break;
                     default:
                         break;
@@ -208,22 +235,27 @@ function MineSweeperGameBoard({minesweeper , player}) {
 
 
     return(
-        <div style={{justifyContent: "center", textAlign: "center", marginLeft: "auto", marginRight: "auto", border: "10px solid grey", padding: "20px", backgroundColor: "rgb(200,192,192)"}}>
-            <button onClick={newGame}>Start New Game</button>
+        <div style={{justifyContent: "center", textAlign: "center",  border: "10px solid grey", padding: "20px", backgroundColor: "rgb(200,192,192)" , display: 'inline-block', margin: '10px' ,position: 'absolute',  left: '50%', transform: 'translateX(-50%)'}}>
+            <button onClick={newGame}>Start New Game</button><br></br><br></br>
             <button onClick={beginnerLevel}>Beginner</button>
+            <button onClick={noviceLevel}>Novice</button>
             <button onClick={intermediateLevel}>Intermediate</button>
-            
             <button onClick={expertLevel}>Expert</button>
+            <button onClick={masterLevel}>Master</button>
+            
+            
             <br></br><br></br>
-            <div style={{height: "40px" , width: "80px", backgroundColor: "black", color: "white" , border: "4px solid white", display: "flex",  alignItems: "center", justifyContent: "center", textAlign: "center",fontSize: "28px", float: "left"}}>
+            <div style={{height: "40px" , width: "80px", backgroundColor: "black", color: "white" , border: "4px solid white",  display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center",fontSize: "28px", float: "left"}}>
             {seconds}
             </div>
-            <Modal isShowing={isShowing} newGame={newGame} />
-            <WinModal showWin={showWin} seconds={seconds} level={level} />
+            
+            
             
             
             <h3 style={{color: "black"}}>Flags Planted: {flags} Mines: {mines} </h3>
-            <div style={{border: "10px solid" , borderColor: "dimgrey white white dimgrey"}}>
+            <div style={{border: "10px solid" , borderColor: "dimgrey white white dimgrey" , justifyContent: "center" }}>
+            <Modal isShowing={isShowing} newGame={newGame} />
+            <WinModal showWin={showWin} seconds={seconds} level={level} />
             {grid.map((row)=> {
                 return(
                     

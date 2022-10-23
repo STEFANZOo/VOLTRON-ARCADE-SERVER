@@ -13,20 +13,35 @@ const postBestTime = async (player , record , seconds) => {
             }
             break;
         case 2:
+            if(seconds < user.games.minesweeper.noviceBestTime){
+                user.games.minesweeper.noviceBestTime = seconds;
+                user.save()
+                
+            }
+            break;
+        case 3:
             if(seconds < user.games.minesweeper.intermediateBestTime){
                 user.games.minesweeper.intermediateBestTime = seconds;
                 user.save()
                 
             }
             break;
-        case 3:
+        case 4:
             if(seconds < user.games.minesweeper.expertBestTime){
                 user.games.minesweeper.expertBestTime = seconds;
                 user.save()
                 
             }
             break;
+        case 5:
+            if(seconds < user.games.minesweeper.masterBestTime){
+                user.games.minesweeper.masterBestTime = seconds;
+                user.save()
+                
+            }
+            break;
         }
+        
     }
 
     module.exports = {postBestTime}

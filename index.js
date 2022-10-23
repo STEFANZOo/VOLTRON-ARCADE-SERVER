@@ -4,6 +4,7 @@ const walletModel = require('./mongoModels/wallet');
 const signUp = require('./Authentication/signUp');
 const login = require('./Authentication/login');
 const postBestTime = require('./utilities');
+const minesweeperBestTimes = require('./gameUtil/minesweeperBestTimes');
 const path = require('path');
 
 const PORT = process.env.PORT || 3001;
@@ -52,6 +53,15 @@ app.post('/bestTime' , (req, res) => {
     console.log(seconds)
     console.log('time post test')
     postBestTime.postBestTime(player , record , seconds)
+});
+
+app.get('/minesweeper/bestTimes' , (req,res) => {
+    const getTimes = async () => {
+        const times = await minesweeperBestTimes.minesweeperBestTimes();
+        res.status(200).json(times);
+    }
+    getTimes(); 
+    
 })
 
 app.listen(PORT, () => {

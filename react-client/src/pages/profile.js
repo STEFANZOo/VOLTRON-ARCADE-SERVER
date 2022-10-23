@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React , {useState , useEffect} from "react";
 import '../App.css';
 import {useLocation} from 'react-router-dom';
 import axios from "axios";
@@ -7,6 +7,7 @@ import axios from "axios";
 //import Board from "../tuts/tutComponents/board";
 import {FaFlag , FaBomb} from 'react-icons/fa';
 import MineSweeperGameBoard from '../mineSweeper/gameBoard';
+import Leaderboards from "../mineSweeper/leaderBoards";
 
 function Profile(props) {
 
@@ -14,6 +15,8 @@ function Profile(props) {
 
     const [wallet , setWallet] = useState(location.state.wallet);
     const [joules, setJoules] = useState(wallet.inventory.Joules);
+    const [leaderBoards, setLeaderBoards] = useState([]);
+    
     //setWallet(location.state.wallet);
     //console.log(wallet);
     //const {joules, setJoules} = useState(wallet.inventory.Joules)
@@ -27,58 +30,65 @@ function Profile(props) {
         //wallet.inventory.Joules = response.data + 2;
         setJoules(joules + response.data);
         console.log(location.state.wallet.inventory.Joules);
+        console.log(leaderBoards)
         
         console.log(wallet.inventory.Joules)
         
-    }
+    };
+
+    const getTimes = async () => {
+        const response = await axios.get('/minesweeper/bestTimes')
+        const data = await response;
+        setLeaderBoards(response.data);
+        console.log(response.data)
+        console.log(leaderBoards) 
+        return data.data;
+        
+        
+    };
+
+    useEffect(()=> { 
+        getTimes();
+        //setLeaderBoards(times);
+        //console.log('hello' + leaderBoards[0].username)
+        console.log(leaderBoards)
+        
+    } ,[joules])
 
     return(
-        <>
+        <div style={{justifyContent: 'center'}}>
             <div className="Profile-header">
-                <div style={{textAlign:"center"}}>
-                    <h1>Eternal Universe</h1>
 
+                <div>
+                    <h1>Eternal Universe</h1>
                 </div>
-                
-                
-                
-                
                 
             </div>
             <div className="App">
-                <h1 style={{textAlign: "left"}} >Profile Page</h1>
-                <h1>Username: {location.state.wallet.username}</h1>
-                <h1>Inventory</h1>
-                <h2>Joules:</h2>
-                <p>{location.state.wallet.inventory.Joules} </p>
-                <p>{wallet.inventory.Joules}</p>
-                <p>{joules}</p>
-                <h2>Ore:</h2>
-                <p>{location.state.wallet.inventory.Ore} </p>
+                <h1 style={{textAlign: "left"}} >Electron Arcade</h1>
+                <h1>player: {location.state.wallet.username}</h1>
+                <h2>Joules: {joules}</h2>
                 
             </div>
             <button onClick={handleClick}>Mine</button>
-
-            <div style={{justifyContent: "center",  display: "flex", border: "5px solid black"}}>
-                <MineSweeperGameBoard minesweeper={minesweeper} player={player}/>
-            </div>
             
             
+            {leaderBoards.length > 0 ? <Leaderboards leaderBoards={leaderBoards} /> : 'Loading'}
+            <MineSweeperGameBoard minesweeper={minesweeper} player={player} style={{display: 'flex'}} />
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        </>
+                        
+        </div>
         
     )
 }
 
 export default Profile
+
+/*
+
+<div style={{justifyContent: "center",  display: "flex", border: "5px solid black"}}>
+                <MineSweeperGameBoard minesweeper={minesweeper} player={player} />
+            </div>
+
+*/

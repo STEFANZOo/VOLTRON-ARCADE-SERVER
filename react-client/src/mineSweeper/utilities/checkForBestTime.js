@@ -1,6 +1,6 @@
-export const checkForBestTime = (rows , seconds, minesweeper) =>{
-    switch(rows){
-        case 10:
+export const checkForBestTime = (rows , cols , seconds, minesweeper) =>{
+    switch(rows + cols){
+        case 18:
             if(seconds < minesweeper.beginnerBestTime){
                 return 1
                 
@@ -10,24 +10,38 @@ export const checkForBestTime = (rows , seconds, minesweeper) =>{
                 
             }
             break;
-        case 16:
-            if(seconds < minesweeper.intermediateBestTime){
+        case 24:
+            if(seconds < minesweeper.noviceBestTime){
                 return 2
+            }
+            else{
+                return 0;
+            }
+            break;
+        case 32:
+            if(seconds < minesweeper.intermediateBestTime){
+                return 3
                 
             }else{
                 return 0;
                 
             }
             break;
-        case 30:
+        case 46:
             if(seconds < minesweeper.expertBestTime){
-                return 3;
+                return 4;
                 
             }else{
                 return 0;
                 
             }
             break;
+        case 54:
+            if(seconds < minesweeper.masterBesttime){
+                return 5
+            }else{
+                return 0
+            }
         default:
             return 0;
     }

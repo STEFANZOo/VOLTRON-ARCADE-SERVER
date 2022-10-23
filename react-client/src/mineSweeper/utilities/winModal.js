@@ -1,8 +1,8 @@
 import React from "react";
 
 function WinModal({showWin, seconds , level}){
-    const style = {width: 250, height: 250, backgroundColor: "blue",  border: "10px solid black", position: 'absolute', top: '65%', left: "10%", visibility: 'block', color: "white"}
-    const bestTime = seconds <= level() ? "New Best Time!" + seconds : ''
+    const style = {width: 250, height: 250, backgroundColor: "blue",  border: "10px solid black", position: 'absolute', visibility: 'block', color: "white"}
+    const bestTime = seconds <= level() ? "New Best Time! " + seconds + 'seconds!!!': ''
     if(!showWin){
         return null;
     }

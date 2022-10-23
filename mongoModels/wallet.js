@@ -21,8 +21,10 @@ const walletSchema = mongoose.Schema({
     games: {
         minesweeper: {
             beginnerBestTime: {type: Number, default: 9999},
+            noviceBestTime: {type: Number, default: 9999},
             intermediateBestTime: {type: Number, default: 9999},
-            expertBestTime: {type: Number, default: 9999}
+            expertBestTime: {type: Number, default: 9999},
+            masterBestTime: {type: Number, default: 9999}
         }
     }
     

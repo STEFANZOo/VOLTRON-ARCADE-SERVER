@@ -14,12 +14,12 @@ const signUp = async (req, res, next) => {
             console.log('Wallet created!');
             console.log(wallet);
             res.status(201).json({
-                message: 'Wallet created!',
-                wallet: wallet._id,
+                message: 'Account created. Welcome to Eternal Universe! Please close the window and use the login to enter the Electron Arcade.',
+                username: wallet.username,
             });
         }).catch((error) => {
             res.status(401).json({
-                message: 'Wallet not created.',
+                message: 'Account not created.',
                 error: error.message,
             })
         })
