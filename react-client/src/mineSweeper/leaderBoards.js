@@ -17,7 +17,7 @@ export default function Leaderboards(props){
     master = master.sort((a,b)=> {return a.games.minesweeper.masterBestTimes - b.games.minesweeper.masterBestTimes});
     
     return(
-        <div style={{width: '100%' , backgroundColor: 'grey' , display: 'flex', flexDirection: 'right' , justifyContent: 'center' , fontWeight: 'bold'}}>
+        <div style={{width: '100%' , backgroundColor: 'grey' , display: 'flex', flexDirection: 'right' , justifyContent: 'center' , fontWeight: 'bold' , flexWrap: 'wrap', overflowX: 'scroll', overflowY: 'hidden'}}>
             <div style={{display: 'flex', flexDirection: 'right'}}>
                 <table style={{border: "4px solid black" , backgroundColor: 'lightgrey' , margin: '10px'}}>
                 <caption style={{border: "4px solid black" , backgroundColor: 'black', color: 'lightgrey' }}>Beginner Best Times</caption>
@@ -67,6 +67,7 @@ export default function Leaderboards(props){
                     </tbody>
 
                 </table>
+                
                 
                     <table style={{border: "4px solid black" , backgroundColor: 'lightblue', margin: '10px'}}>
                     <caption style={{border: "4px solid black" , backgroundColor: 'black', color: 'lightblue' }}>Intermediate Best Times</caption>
