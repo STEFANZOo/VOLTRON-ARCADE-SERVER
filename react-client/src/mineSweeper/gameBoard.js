@@ -144,8 +144,8 @@ function MineSweeperGameBoard({minesweeper , player}) {
     }
 
     function expertBoard(){
-        setRows(16);
-        setCols(30);
+        setRows(30);
+        setCols(16);
         setMines(99);
         setFlags(0);
         const exp = FillBoard(rows, cols, mines)
