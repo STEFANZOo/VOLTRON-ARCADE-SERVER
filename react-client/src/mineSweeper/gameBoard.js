@@ -13,9 +13,9 @@ import axios from "axios";
 //import Wallet from "../../../Server/mongoModels/wallet";
 
 function MineSweeperGameBoard({minesweeper , player}) {
-    const [rows, setRows] = useState(10);
-    const [cols, setCols] = useState(10);
-    const [mines, setMines] = useState(20);
+    const [rows, setRows] = useState(9);
+    const [cols, setCols] = useState(9);
+    const [mines, setMines] = useState(10);
     const [flags, setFlags] = useState(0);
     const [grid, setGrid] = useState([]);
     const [seconds , setSeconds] = useState(0);
