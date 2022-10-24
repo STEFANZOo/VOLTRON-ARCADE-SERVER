@@ -222,14 +222,20 @@ function MineSweeperGameBoard({minesweeper , player}) {
     }, [grid])
 
     const level = () => {
-        if(rows === 10){
+        if(rows + cols === 18){
             return minesweeper.beginnerBestTime;
         }
-        else if(rows === 16){
+        else if(rows + cols === 24){
+            return minesweeper.noviceBestTime;
+        }
+        else if(rows + cols === 32){
             return minesweeper.intermediateBestTime;
         }
-        else if(rows === 30){
+        else if(rows + cols === 46){
             return minesweeper.expertBestTime;
+        }
+        else if(rows + cols === 54){
+            return minesweeper.masterBestTime;
         }
     }
 

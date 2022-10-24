@@ -5,16 +5,16 @@ export default function Leaderboards(props){
     easy = easy.sort((a,b) => {return a.games.minesweeper.beginnerBestTime - b.games.minesweeper.beginnerBestTime})
 
     let novice = JSON.parse(JSON.stringify(props.leaderBoards));
-    novice = novice.sort((a,b)=> {return a.games.minesweeper.noviceBestTimes - b.games.minesweeper.noviceBestTimes})
+    novice = novice.sort((a,b)=> {return a.games.minesweeper.noviceBestTime - b.games.minesweeper.noviceBestTime})
     
     let intermediate = JSON.parse(JSON.stringify(props.leaderBoards));
     intermediate = intermediate.sort((a,b) => {return a.games.minesweeper.intermediateBestTime - b.games.minesweeper.intermediateBestTime})
     
     let expert = JSON.parse(JSON.stringify(props.leaderBoards))
-    expert = expert.sort((a,b)=> {return b.games.minesweeper.expertBestTime - a.games.minesweeper.expertBestTime});
+    expert = expert.sort((a,b)=> {return a.games.minesweeper.expertBestTime - b.games.minesweeper.expertBestTime});
 
     let master = JSON.parse(JSON.stringify(props.leaderBoards));
-    master = master.sort((a,b)=> {return a.games.minesweeper.masterBestTimes - b.games.minesweeper.masterBestTimes});
+    master = master.sort((a,b)=> {return a.games.minesweeper.masterBestTime - b.games.minesweeper.masterBestTime});
     
     return(
         <div style={{width: '100vw' , backgroundColor: 'grey' , display: 'flex', flexDirection: 'right' ,  fontWeight: 'bold' , flexWrap: 'wrap', overflowX: 'scroll', overflowY: 'hidden', margin: '0 auto'}}>
