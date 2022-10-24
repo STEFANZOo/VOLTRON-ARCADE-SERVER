@@ -235,7 +235,7 @@ function MineSweeperGameBoard({minesweeper , player}) {
 
 
     return(
-        <div style={{justifyContent: "center", textAlign: "center",  border: "10px solid grey", padding: "20px", backgroundColor: "rgb(200,192,192)" , display: 'inline-block', margin: '10px' ,position: 'absolute',  left: '50%', transform: 'translateX(-50%)'}}>
+        <div style={{ border: "10px solid grey", padding: "20px", backgroundColor: "rgb(200,192,192)" , display: 'inline-block', position: 'absolute',   marginLeft: 'auto',  marginRight: 'auto'} }>
             <button onClick={newGame}>Start New Game</button><br></br><br></br>
             <button onClick={beginnerLevel}>Beginner</button>
             <button onClick={noviceLevel}>Novice</button>

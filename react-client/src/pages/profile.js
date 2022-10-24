@@ -56,7 +56,7 @@ function Profile(props) {
     } ,[joules])
 
     return(
-        <div style={{justifyContent: 'center'}}>
+        <div style={{ overflowX: 'scroll',  margin: '0 auto', justifyContent: 'safe center'}}>
             <div className="Profile-header">
 
                 <div>
@@ -65,7 +65,7 @@ function Profile(props) {
                 
             </div>
             <div className="App">
-                <h1 style={{textAlign: "left"}} >Electron Arcade</h1>
+                <h1 style={{backgroundColor: 'chartreuse'}}>Electron Arcade</h1>
                 <h1>player: {location.state.wallet.username}</h1>
                 <h2>Joules: {joules}</h2>
                 
