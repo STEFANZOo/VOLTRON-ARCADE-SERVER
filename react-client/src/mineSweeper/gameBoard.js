@@ -241,13 +241,13 @@ function MineSweeperGameBoard({minesweeper , player}) {
 
 
     return(
-        <div style={{ border: "10px solid grey", padding: "20px", backgroundColor: "rgb(200,192,192)" , display: 'inline-block', position: 'absolute',   marginLeft: '10px auto',  marginRight: 'auto', justifyContent: 'center', textAlign: 'center', marginTop: '20px', margin: '5px'} }>
-            <button onClick={newGame}>Start New Game</button><br></br><br></br>
-            <button onClick={beginnerLevel}>Beginner</button>
-            <button onClick={noviceLevel}>Novice</button>
-            <button onClick={intermediateLevel}>Intermediate</button>
-            <button onClick={expertLevel}>Expert</button>
-            <button onClick={masterLevel}>Master</button>
+        <div style={{ border: "10px solid grey", padding: "20px", backgroundColor: "rgb(200,192,192)" , display: 'block',   marginLeft: '1px auto', justifyContent: 'center', textAlign: 'center', marginTop: '20px', margin: '1px', oveflowX: 'scroll' } }>
+            <button onClick={newGame}style={{backgroundColor: 'chartreuse', fontWeight: 'bold'}}>Start New Game</button><br></br><br></br>
+            <button onClick={beginnerLevel}style={{backgroundColor: "gray", fontWeight: 'bold', color: 'white'}}>Beginner</button>
+            <button onClick={noviceLevel}style={{backgroundColor: '#a97142', fontWeight: 'bold', color: 'white'}}>Novice</button>
+            <button onClick={intermediateLevel}style={{backgroundColor: 'lightblue', fontWeight: 'bold'}}>Intermediate</button>
+            <button onClick={expertLevel}style={{backgroundColor: 'yellow', fontWeight: 'bold'}}>Expert</button>
+            <button onClick={masterLevel}style={{backgroundColor: 'black', fontWeight: 'bold', color: 'chartreuse'}}>Master</button>
             
             
             <br></br><br></br>

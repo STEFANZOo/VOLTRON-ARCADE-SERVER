@@ -56,30 +56,35 @@ function Profile(props) {
     } ,[joules])
 
     return(
-        <div style={{ overflowX: 'scroll',  margin: '0 auto', justifyContent: 'safe center'}}>
-            <div className="Profile-header">
+        <div style={{ display: 'block'}}>
+            <div style={{   margin: '0 auto', justifyContent: 'safe center',  display: 'block' }}>
+                <div className="Profile-header">
 
-                <div>
-                    <h1>Eternal Universe</h1>
+                    <div >
+                        <h1>Eternal Universe</h1>
+                    </div>
+                    
                 </div>
                 
-            </div>
-            <div className="App">
-                <h1 style={{backgroundColor: 'chartreuse'}}>Electron Arcade</h1>
-                <h1>player: {location.state.wallet.username}</h1>
-                <h2>Joules: {joules}</h2>
+                <div className="App">
+                    <h1 style={{backgroundColor: 'chartreuse'}}>Electron Arcade</h1>
+                    <h1>player: {location.state.wallet.username}</h1>
+                    <h2>Joules: {joules}</h2>
+                    
+                </div>
+                <button onClick={handleClick}>Mine</button>
                 
+                
+                {leaderBoards.length > 0 ? <Leaderboards leaderBoards={leaderBoards} /> : 'Loading'}
+                <div style={{justifyContent: 'center', display: 'inline-block',  oveflowX: 'scroll'}}>
+                    <MineSweeperGameBoard minesweeper={minesweeper} player={player} style={{display: 'flex'}} />
+                </div>
+                
+                
+                
+                            
             </div>
-            <button onClick={handleClick}>Mine</button>
-            
-            
-            {leaderBoards.length > 0 ? <Leaderboards leaderBoards={leaderBoards} /> : 'Loading'}
-            <MineSweeperGameBoard minesweeper={minesweeper} player={player} style={{display: 'flex'}} />
-            
-            
-                        
         </div>
-        
     )
 }
 
