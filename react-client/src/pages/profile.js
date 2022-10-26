@@ -51,7 +51,7 @@ function Profile(props) {
         getTimes();
         //setLeaderBoards(times);
         //console.log('hello' + leaderBoards[0].username)
-        console.log(leaderBoards)
+        //console.log(leaderBoards)
         
     } ,[joules])
 

@@ -14,7 +14,7 @@ export default function GridCell({data, setFlag, reveal }) {
     function getCellStyle(data){
         let cellStyle = {
             width: 30, height: 30, backgroundColor: "rgb(192,192,192)", border: "4px", color: "white",
-            justifyContent: "center", alignItems: "center", display: "flex", borderStyle: "solid" , cursor: "pointer", borderRadius: "1px", borderColor: " white dimgrey dimgrey white" , webkitTouchCallout: 'none'
+            justifyContent: "center", alignItems: "center", display: "flex", borderStyle: "solid" , cursor: "pointer", borderRadius: "1px", borderColor: " white dimgrey dimgrey white" , webkitTouchCallout: 'none', webkitUserSelect: 'none'
         }
         if(data.isRevealed){
             cellStyle = {width: 34, height: 34, backgroundColor: "rgb(200,192,192)" , border: '1px solid black', padding: '1px',  display: 'flex' ,  alignItems: 'center', justifyContent: 'center', fontSize: '28px', fontWeight: 'bold'
