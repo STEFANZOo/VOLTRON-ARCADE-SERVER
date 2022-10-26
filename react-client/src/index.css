@@ -5,8 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
 }
 
 code {
