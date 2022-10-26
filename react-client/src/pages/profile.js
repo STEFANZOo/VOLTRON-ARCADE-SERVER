@@ -29,10 +29,10 @@ function Profile(props) {
         //location.state.wallet.inventory.Joules = response.data + 2;
         //wallet.inventory.Joules = response.data + 2;
         setJoules(joules + response.data);
-        console.log(location.state.wallet.inventory.Joules);
-        console.log(leaderBoards)
+        //console.log(location.state.wallet.inventory.Joules);
+        //console.log(leaderBoards)
         
-        console.log(wallet.inventory.Joules)
+        //console.log(wallet.inventory.Joules)
         
     };
 
@@ -40,8 +40,8 @@ function Profile(props) {
         const response = await axios.get('/minesweeper/bestTimes')
         const data = await response;
         setLeaderBoards(response.data);
-        console.log(response.data)
-        console.log(leaderBoards) 
+        //console.log(response.data)
+        //console.log(leaderBoards) 
         return data.data;
         
         
@@ -53,7 +53,7 @@ function Profile(props) {
         //console.log('hello' + leaderBoards[0].username)
         //console.log(leaderBoards)
         
-    } ,[joules])
+    } ,[joules, minesweeper])
 
     return(
         <div style={{ display: 'block'}}>
