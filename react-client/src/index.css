@@ -15,8 +15,11 @@ code {
     monospace;
 }
 
-* {
+*:not(input , textarea) {
   -webkit-touch-callout: none !important;
   user-select: none;
   -webkit-user-select: none !important;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
