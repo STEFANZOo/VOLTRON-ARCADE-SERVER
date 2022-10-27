@@ -49,7 +49,7 @@ export default function GridCell({data, setFlag, reveal , touchSetFlag }) {
         timerRef.current = setTimeout(()=> {
             isLongPress.current = true;
             setAction('longpress');
-        } , 200);
+        } , 500);
     }
 
     
