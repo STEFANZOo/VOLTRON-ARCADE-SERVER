@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useRef} from "react";
 import { FaFlag , FaBomb } from "react-icons/fa";
 
-export default function GridCell({data, setFlag, reveal }) {
+export default function GridCell({data, setFlag, reveal , touchSetFlag }) {
     const [style , setStyle] = useState({})
+    const [action , setAction] = useState();
+
+    const timerRef = useRef();
+    const isLongPress = useRef();
 /*
     const hiddenStyle = {
         width: 30, height: 30, backgroundColor: "rgb(192,192,192)", border: "4px", color: "white",
@@ -38,17 +42,52 @@ export default function GridCell({data, setFlag, reveal }) {
     useEffect(()=> {
         const funcCellStyle = getCellStyle(data)
         setStyle(funcCellStyle)
-    },[data])
+    },[data]);
 
-    
-    
-
-    const onClick = () => {
-        reveal(data.x, data.y);
+    function startPressTimer(){
+        isLongPress.current = false;
+        timerRef.current = setTimeout(()=> {
+            isLongPress.current = true;
+            setAction('longpress');
+        } , 500);
     }
 
+    
+    
+
+    const onClick = (e) => {
+        if(isLongPress.current){
+            console.log('yo')
+            touchSetFlag(e ,data.x , data.y)
+        }else{
+            reveal(data.x, data.y);
+        }
+        clearTimeout(timerRef.current);
+        
+    }
+    function handleTouchstart(){
+        console.log('touch start')
+        startPressTimer();
+    };
+    function handleTouchEnd(e){
+        console.log('touch end');
+        if(isLongPress.current){
+            console.log('yo')
+            touchSetFlag(e ,data.x , data.y)
+        }else{
+            //reveal(data.x, data.y);
+        }
+        clearTimeout(timerRef.current);
+    };
+    function handleMouseDown(){
+        startPressTimer();
+    };
+    function handleMouseUp(e){
+        
+        clearTimeout(timerRef.current)
+    }
     return(
-        <div style={style} onClick={onClick} onContextMenu={(e)=> setFlag(e, data.x, data.y)}>
+        <div style={style} onClick={onClick} onContextMenu={(e)=> setFlag(e, data.x, data.y)} onTouchStart={handleTouchstart} onTouchEnd={handleTouchEnd} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} >
             {data.isFlagged ? <FaFlag style={{color: "red"}} /> : data.isRevealed ? data.value === -1 ? <FaBomb style={{color: "black"}}/> : data.value === 0 ? '' : data.value : ''}
         </div>
     )

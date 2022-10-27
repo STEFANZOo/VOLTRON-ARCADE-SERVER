@@ -1,4 +1,4 @@
-import React , {useEffect, useState} from "react";
+import React , {useEffect, useState , useRef} from "react";
 import FillBoard from './utilities/fillBoard';
 import revealCell from './utilities/revealCell';
 import { FaFlag } from "react-icons/fa";
@@ -23,6 +23,7 @@ function MineSweeperGameBoard({minesweeper , player}) {
     const [isShowing , setIsShowing] = useState(false);
     const [showWin , setShowWin] = useState(false);
     const [losing , setLosing] = useState(false);
+    const [action , setAction] = useState();
     
 
     const bestTimes = minesweeper;
@@ -54,11 +55,29 @@ function MineSweeperGameBoard({minesweeper , player}) {
             interval = null;
         }
         return() => clearInterval(interval)
-    }, [isActive, seconds])
+    }, [isActive, seconds]);
+
+    
       
 
     const setFlag = (e, x, y) => {
         e.preventDefault();
+        let newGrid = JSON.parse(JSON.stringify(grid));
+        if(newGrid[y][x].isFlagged){
+            newGrid[y][x].isFlagged = false;
+            setFlags(flags -1);        
+        } 
+        
+        else if(flags < mines && isActive && !newGrid[y][x].isRevealed){
+            newGrid[y][x].isFlagged = true;
+            setFlags(flags + 1);
+        }
+        setGrid(newGrid);
+        checkWin();
+    };
+
+    const touchSetFlag = (e, x, y) => {
+        
         let newGrid = JSON.parse(JSON.stringify(grid));
         if(newGrid[y][x].isFlagged){
             newGrid[y][x].isFlagged = false;
@@ -269,7 +288,7 @@ function MineSweeperGameBoard({minesweeper , player}) {
                         {row.map((item) => {
                         return(
                             <div>
-                                <GridCell data={item} setFlag={setFlag} reveal={reveal} />
+                                <GridCell data={item} setFlag={setFlag} reveal={reveal} touchSetFlag={touchSetFlag} />
                                 
                             </div>                         
                         )

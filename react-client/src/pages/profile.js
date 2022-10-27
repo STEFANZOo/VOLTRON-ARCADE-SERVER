@@ -31,6 +31,7 @@ function Profile(props) {
         setJoules(joules + response.data);
         //console.log(location.state.wallet.inventory.Joules);
         //console.log(leaderBoards)
+        console.log('onclick')
         
         //console.log(wallet.inventory.Joules)
         
@@ -72,7 +73,7 @@ function Profile(props) {
                     <h2>Joules: {joules}</h2>
                     
                 </div>
-                <button onClick={handleClick}>Mine</button>
+                <button onClick={handleClick} onMouseDown={()=> {console.log('mouse down')}} onMouseUp={()=> {console.log('mouse up')}} onTouchStart={()=> {console.log('touch start')}} onTouchEnd={()=> {console.log('touch end')}} >Mine</button>
                 
                 
                 {leaderBoards.length > 0 ? <Leaderboards leaderBoards={leaderBoards} /> : 'Loading'}
