@@ -6,10 +6,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-touch-callout: none !important;
+  user-select: none;
   -webkit-user-select: none !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+* {
+  -webkit-touch-callout: none !important;
+  user-select: none;
+  -webkit-user-select: none !important;
 }
