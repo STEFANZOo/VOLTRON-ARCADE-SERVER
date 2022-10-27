@@ -49,7 +49,7 @@ export default function GridCell({data, setFlag, reveal , touchSetFlag }) {
         timerRef.current = setTimeout(()=> {
             isLongPress.current = true;
             setAction('longpress');
-        } , 500);
+        } , 200);
     }
 
     
@@ -58,7 +58,7 @@ export default function GridCell({data, setFlag, reveal , touchSetFlag }) {
     const onClick = (e) => {
         if(isLongPress.current){
             console.log('yo')
-            touchSetFlag(e ,data.x , data.y)
+            //touchSetFlag(e ,data.x , data.y)
         }else{
             reveal(data.x, data.y);
         }
