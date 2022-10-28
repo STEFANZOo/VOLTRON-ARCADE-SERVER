@@ -56,12 +56,10 @@ export default function GridCell({data, setFlag, reveal , touchSetFlag }) {
     
 
     const onClick = (e) => {
-        if(isLongPress.current){
-            console.log('yo')
-            //touchSetFlag(e ,data.x , data.y)
-        }else{
-            reveal(data.x, data.y);
-        }
+        console.log('onClick')
+        
+        reveal(data.x, data.y);
+        
         clearTimeout(timerRef.current);
         
     }
@@ -80,9 +78,16 @@ export default function GridCell({data, setFlag, reveal , touchSetFlag }) {
         clearTimeout(timerRef.current);
     };
     function handleMouseDown(){
+        console.log('mouse down')
         startPressTimer();
     };
     function handleMouseUp(e){
+        console.log('mouse up')
+        if(isLongPress.current){
+            console.log('yo')
+            touchSetFlag(e ,data.x , data.y)
+        }
+        
         
         clearTimeout(timerRef.current)
     }

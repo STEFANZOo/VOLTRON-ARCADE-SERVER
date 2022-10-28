@@ -77,7 +77,7 @@ function MineSweeperGameBoard({minesweeper , player}) {
     };
 
     const touchSetFlag = (e, x, y) => {
-        
+        e.preventDefault();
         let newGrid = JSON.parse(JSON.stringify(grid));
         if(newGrid[y][x].isFlagged){
             newGrid[y][x].isFlagged = false;
