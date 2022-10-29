@@ -12,7 +12,7 @@ import { checkForBestTime } from "./utilities/checkForBestTime";
 import axios from "axios";
 //import Wallet from "../../../Server/mongoModels/wallet";
 
-function MineSweeperGameBoard({minesweeper , player}) {
+function MineSweeperGameBoard({minesweeper , player , setLeaderBoards , setTime}) {
     const [rows, setRows] = useState(9);
     const [cols, setCols] = useState(9);
     const [mines, setMines] = useState(10);
@@ -202,6 +202,12 @@ function MineSweeperGameBoard({minesweeper , player}) {
        return Iwin
     };
 
+    async function postBesttime(record , player , seconds)  {
+        let answer = await axios.post('/bestTime' , {record: record, player: player ,seconds: seconds});
+
+        return answer
+    }
+
     useEffect(()=> {
         let Iwin = checkWin();
         if(Iwin === 0 && grid.length && !losing && flags === mines){
@@ -210,7 +216,7 @@ function MineSweeperGameBoard({minesweeper , player}) {
             let record = checkForBestTime(rows, cols, seconds , minesweeper);
 
             if(record > 0){
-               let response =  axios.post('/bestTime' , {record: record, player: player ,seconds: seconds});
+               let response =  postBesttime(record , player , seconds);
                
                if(response){
                 switch(record){
@@ -233,6 +239,7 @@ function MineSweeperGameBoard({minesweeper , player}) {
                     default:
                         break;
                 }
+                setTime(seconds);
             }
             
             }       

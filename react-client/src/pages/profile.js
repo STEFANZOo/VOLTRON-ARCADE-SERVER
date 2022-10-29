@@ -16,6 +16,7 @@ function Profile(props) {
     const [wallet , setWallet] = useState(location.state.wallet);
     const [joules, setJoules] = useState(wallet.inventory.Joules);
     const [leaderBoards, setLeaderBoards] = useState([]);
+    const [time , setTime] = useState();
     
     //setWallet(location.state.wallet);
     //console.log(wallet);
@@ -23,6 +24,7 @@ function Profile(props) {
 
     const minesweeper = wallet.games.minesweeper
     const player = wallet.username
+    //setTimes(minesweeper)
 
     const handleClick= async () => {
         const response = await axios.get('/gameEngine')
@@ -54,7 +56,7 @@ function Profile(props) {
         //console.log('hello' + leaderBoards[0].username)
         //console.log(leaderBoards)
         
-    } ,[joules, minesweeper])
+    } ,[joules , minesweeper, time])
 
     return(
         <div style={{ display: 'block'}}>
@@ -78,7 +80,7 @@ function Profile(props) {
                 
                 {leaderBoards.length > 0 ? <Leaderboards leaderBoards={leaderBoards} /> : 'Loading'}
                 <div style={{justifyContent: 'center', display: 'inline-block',  oveflowX: 'scroll'}}>
-                    <MineSweeperGameBoard minesweeper={minesweeper} player={player} style={{display: 'flex'}} />
+                    <MineSweeperGameBoard minesweeper={minesweeper} player={player} setLeaderBoards={setLeaderBoards} setTime={setTime} style={{display: 'flex'}} />
                 </div>
                 
                 
