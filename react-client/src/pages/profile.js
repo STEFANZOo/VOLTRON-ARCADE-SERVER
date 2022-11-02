@@ -8,6 +8,8 @@ import axios from "axios";
 import {FaFlag , FaBomb} from 'react-icons/fa';
 import MineSweeperGameBoard from '../mineSweeper/gameBoard';
 import Leaderboards from "../mineSweeper/leaderBoards";
+//import CountdownTimer from "../util/oldCountdownTimer";
+import CountDownTimer from "../util/countDownTimer";
 
 function Profile(props) {
 
@@ -15,6 +17,8 @@ function Profile(props) {
 
     const [wallet , setWallet] = useState(location.state.wallet);
     const [joules, setJoules] = useState(wallet.inventory.Joules);
+    const [ore , setOre] = useState(wallet.inventory.Ore);
+    const [mineTimer , setMineTimer] = useState(wallet.nextMine)
     const [leaderBoards, setLeaderBoards] = useState([]);
     const [time , setTime] = useState();
     
@@ -24,7 +28,13 @@ function Profile(props) {
 
     const minesweeper = wallet.games.minesweeper
     const player = wallet.username
+    const nextMine = new Date(wallet.nextMine);
+    const canMine = new Date()
+    canMine.setDate(canMine.getDate() + 1);
+    canMine.setHours(0, 0, 0, 0);
+    const date = new Date()
     //setTimes(minesweeper)
+    //CountdownTimer(nextMine);
 
     const handleClick= async () => {
         const response = await axios.get('/gameEngine')
@@ -50,6 +60,16 @@ function Profile(props) {
         
     };
 
+    const handleMine = async () => {
+        const response = await axios.post('/gameEngine' , {username: wallet.username});
+        if(response.data.ore){
+            setOre(ore + response.data.ore);
+            setMineTimer(response.data.nextMine)
+            alert('You mined {response.data.ore} Ore')
+        }
+        
+    }
+
     useEffect(()=> { 
         getTimes();
         //setLeaderBoards(times);
@@ -73,9 +93,19 @@ function Profile(props) {
                     <h1 style={{backgroundColor: 'chartreuse'}}>Electron Arcade</h1>
                     <h1>player: {location.state.wallet.username}</h1>
                     <h2>Joules: {joules}</h2>
+                    <h2>Ore: {ore}</h2>
                     
                 </div>
-                <button onClick={handleClick} onMouseDown={()=> {console.log('mouse down')}} onMouseUp={()=> {console.log('mouse up')}} onTouchStart={()=> {console.log('touch start')}} onTouchEnd={()=> {console.log('touch end')}} >Mine</button>
+                <div className="App">
+                    <button onClick={handleClick} onMouseDown={()=> {console.log('mouse down')}} onMouseUp={()=> {console.log('mouse up')}} onTouchStart={()=> {console.log('touch start')}} onTouchEnd={()=> {console.log('touch end')}} >Mine</button>
+                    {nextMine.getTime() - date.getTime()  <=0 ? 
+                     <button onClick={handleMine} style={{width: '120px', height: '40px', backgroundColor: 'black', color: 'chartreuse', border: '2px solid chartreuse', fontWeight: 'bold', margin: '10px', cursor: 'pointer'}}>Go Mining</button>
+                    :
+                    <CountDownTimer targetDate={mineTimer} />
+                    }
+                    
+                    
+                </div>
                 
                 
                 {leaderBoards.length > 0 ? <Leaderboards leaderBoards={leaderBoards} /> : 'Loading'}

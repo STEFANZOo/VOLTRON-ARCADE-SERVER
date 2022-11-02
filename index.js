@@ -6,6 +6,7 @@ const login = require('./Authentication/login');
 const postBestTime = require('./utilities');
 const minesweeperBestTimes = require('./gameUtil/minesweeperBestTimes');
 const path = require('path');
+const runAction = require('./gameEngine');
 
 const PORT = process.env.PORT || 3001;
 
@@ -38,6 +39,11 @@ app.post('/signUp', (req, res) => {
 
 app.get('/gameEngine', (req, res) => {
     res.status(200).json(1000);
+})
+
+app.post('/gameEngine' , (req, res) => {
+    const response = runAction.runAction(req, res);
+    res.status(200).json(response);
 })
 
 app.post('/login', (req, res)=>{

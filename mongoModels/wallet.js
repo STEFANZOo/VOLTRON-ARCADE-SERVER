@@ -6,6 +6,7 @@ const walletSchema = mongoose.Schema({
         required: true,
         unique: true,
         minlength: 3,
+        maxLength: 10,
     },
     password: {
         type: String,
@@ -26,6 +27,11 @@ const walletSchema = mongoose.Schema({
             expertBestTime: {type: Number, default: 9999},
             masterBestTime: {type: Number, default: 9999}
         }
+    },
+
+    nextMine:{
+        type: Date,
+        default: new Date()
     }
     
 },
