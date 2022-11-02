@@ -28,7 +28,7 @@ function Profile(props) {
 
     const minesweeper = wallet.games.minesweeper
     const player = wallet.username
-    const nextMine = new Date(wallet.nextMine);
+    let nextMine = new Date(wallet.nextMine);
     const canMine = new Date()
     canMine.setDate(canMine.getDate() + 1);
     canMine.setHours(0, 0, 0, 0);
@@ -44,6 +44,7 @@ function Profile(props) {
         //console.log(location.state.wallet.inventory.Joules);
         //console.log(leaderBoards)
         console.log('onclick')
+        console.log(mineTimer)
         
         //console.log(wallet.inventory.Joules)
         
@@ -60,23 +61,36 @@ function Profile(props) {
         
     };
 
-    const handleMine = async () => {
+    const HandleMine = async () => {
         const response = await axios.post('/gameEngine' , {username: wallet.username});
+        console.log(response)
+        console.log(mineTimer)
+        let newTimer;
         if(response.data.ore){
             setOre(ore + response.data.ore);
-            setMineTimer(response.data.nextMine)
-            alert('You mined {response.data.ore} Ore')
+            let newTimer = response.data.nextMine
+            console.log(newTimer);
+            //useEffect(()=> setMineTimer(newTimer))
+            setMineTimer(newTimer);
+            console.log(mineTimer)
+            alert(`You mined ${response.data.ore} Ore`);
+        }else {
+            alert('nope')
         }
-        
+        //console.log(mineTimer)
+        //setMineTimer(newTimer)
+        //useEffect(()=> setMineTimer(newTimer))
+        console.log(mineTimer)
     }
 
     useEffect(()=> { 
         getTimes();
+        //nextMine = new Date(mineTimer)
         //setLeaderBoards(times);
         //console.log('hello' + leaderBoards[0].username)
         //console.log(leaderBoards)
         
-    } ,[joules , minesweeper, time])
+    } ,[joules , minesweeper,  mineTimer])
 
     return(
         <div style={{ display: 'block'}}>
@@ -98,8 +112,8 @@ function Profile(props) {
                 </div>
                 <div className="App">
                     <button onClick={handleClick} onMouseDown={()=> {console.log('mouse down')}} onMouseUp={()=> {console.log('mouse up')}} onTouchStart={()=> {console.log('touch start')}} onTouchEnd={()=> {console.log('touch end')}} >Mine</button>
-                    {nextMine.getTime() - date.getTime()  <=0 ? 
-                     <button onClick={handleMine} style={{width: '120px', height: '40px', backgroundColor: 'black', color: 'chartreuse', border: '2px solid chartreuse', fontWeight: 'bold', margin: '10px', cursor: 'pointer'}}>Go Mining</button>
+                    {Date.parse(mineTimer) - date.getTime()  <=0 ? 
+                     <button onClick={HandleMine} style={{width: '120px', height: '40px', backgroundColor: 'black', color: 'chartreuse', border: '2px solid chartreuse', fontWeight: 'bold', margin: '10px', cursor: 'pointer'}}>Go Mining</button>
                     :
                     <CountDownTimer targetDate={mineTimer} />
                     }
@@ -128,5 +142,7 @@ export default Profile
 <div style={{justifyContent: "center",  display: "flex", border: "5px solid black"}}>
                 <MineSweeperGameBoard minesweeper={minesweeper} player={player} />
             </div>
+
+
 
 */

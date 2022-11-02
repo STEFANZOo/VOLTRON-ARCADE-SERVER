@@ -41,8 +41,8 @@ app.get('/gameEngine', (req, res) => {
     res.status(200).json(1000);
 })
 
-app.post('/gameEngine' , (req, res) => {
-    const response = runAction.runAction(req, res);
+app.post('/gameEngine' , async (req, res) => {
+    const response = await runAction.runAction(req, res);
     res.status(200).json(response);
 })
 

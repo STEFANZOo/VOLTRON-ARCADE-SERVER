@@ -47,9 +47,9 @@ export function Login(props) {
         <>
             <form method="post" action="/login" onSubmit={handleSubmit} >
                 <h3>Log In!</h3>
-                <input type='text' name="username"  placeholder="Enter username" value={formValue.username} onChange={handlechange} required></input>
+                <input type='text' name="username"  placeholder="Enter username" value={formValue.username} onChange={handlechange} required style={{backgroundColor: 'white'}}></input>
                 <br></br>
-                <input type='text' name="password"  placeholder="Enter password" value={formValue.password} onChange={handlechange} required></input>
+                <input type='text' name="password"  placeholder="Enter password" value={formValue.password} onChange={handlechange} required style={{backgroundColor: 'white'}}></input>
                 <br></br>
                 <button type='submit' value='Login'  style={{backgroundColor:'chartreuse'}}><b>Login</b></button>
             </form>
