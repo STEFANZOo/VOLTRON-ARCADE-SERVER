@@ -78,12 +78,21 @@ export default function GridCell({data, setFlag, reveal , touchSetFlag }) {
     function handleMouseDown(e){
         console.log('mouse down')
         console.log(e.button)
+        console.log(e.ctrlKey)
         if(e.button === 2){
             e.preventDefault()
             setFlag(e, data.x , data.y)
         }
+        if(e.ctrlKey){
+            setFlag(e , data.x , data.y)
+        }
         if(e.button === 1){
+            console.log('hello')
+            
+            
             startPressTimer();
+            
+            
         }
         
         
