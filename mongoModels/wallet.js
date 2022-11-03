@@ -16,7 +16,7 @@ const walletSchema = mongoose.Schema({
     
     inventory: {
         Joules: {type: Number, default: 0},
-        Ore: {type: String, default: 0}
+        Ore: {type: Number, default: 0}
     },
 
     games: {
